@@ -1,0 +1,76 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+  margin: 1%;
+}
+
+.welcome {
+  max-width: 90%;
+  margin-left: 5%;
+}
+
+.welcome_pic {
+  max-width: 100px;
+  height: auto;
+  margin: 20px;
+  border-radius: 50%;
+}
+
+#requests {
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 0 auto;
+  width: 95%;
+  table-layout: auto;
+}
+
+#requests caption {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+#col1 {
+  width: 10%;
+}
+
+#col2 {
+  width: 15%;
+}
+
+#col3 {
+  width: 5%;
+}
+
+#col4 {
+  width: 25%;
+}
+
+#col5 {
+  width: 35%;
+}
+
+#col6 {
+  width: 10%;
+}
+
+#requests th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #5F9EA0;
+  color: white;
+}
+
+#requests tr:nth-child(even) {
+  background-color: #cfe2e2;
+}
+
+#requests td {
+  padding: 10px 15px;
+  text-align: center;
+}
+
+pre {
+  text-align: left;
+}

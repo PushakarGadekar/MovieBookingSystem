@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> MyFlix Documentation</title>
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <div class="welcome">
+      <img src="img/camera.png" class="welcome_pic" alt="Icon of a camera">
+      <h1> Documentation </h1>
+      <p>
+        MyFlix will provide users with access to information about different movies, directors, and genres.
+        Users will be able to sign up, update their personal information, and create a list of their favorite movies.
+      </p>
+    </div>
+
+    <div>
+      <table id="requests">
+        <caption><h2> REST API Movie and User requests </h2></caption>
+        <col id="col1">
+        <col id="col2">
+        <col id="col3">
+        <col id="col4">
+        <col id="col5">
+        <col id="col6">
+        <thead>
+          <tr>
+            <th> Business Logic </th>
+            <th> URL </th>
+            <th> HTTP Method </th>
+            <th> Request body data format </th>
+            <th> Response body data format </th>
+            <th> Authentication strategy </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td> 1) Return a list of ALL movies to the user </td>
+            <td> /movies </td>
+            <td> GET </td>
+            <td> None </td>
+            <td> An array consisting of JSON objects listing all movies. </td>
+            <td> JWT </td>
+          </tr>
+
+          <tr>
+            <td> 2) Return data (title, description, genre, director, image, actors, release year, featured or not) about a single movie by title to the user </td>
+            <td> /movies/:Title </td>
+            <td> GET </td>
+            <td> None </td>
+            <td> A JSON object holding data about a single movie by title. Example:
+              <pre>
+                {
+                  "Genre": {
+                      "Name": "Drama",
+                      "Description": "Within film, television and radio
+                      (but not theatre), drama is a genre of narrative
+                      fiction (or semi-fiction) intended to be more
+                      serious than humorous in tone, focusing on in-depth
+                      development of realistic characters who must deal
+                      with realistic emotional struggles. A drama is
+                      commonly considered the opposite of a comedy, but
+                      may also be considered separate from other works
+                      of some broad genre, such as a fantasy."
+                  },
+                  "Director": {
+                      "Name": "Carroll Ballard",
+                      "Bio": "Carroll Ballard was born on October 14, 1937
+                      in Los Angeles, California, USA as Carroll James Ballard.",
+                      "Birth": "1937"
+                  },
+                  "Actors": [
+                      "Jeff Daniels",
+                      "Anna Paquin",
+                      "Dana Delany"
+                  ],
+                  "_id": "5ed670fe6f553290a8069c22",
+                  "Title": "Fly Away Home",
+                  "Description": "A father and daughter decide to attempt
+                  to lead a flock of orphaned Canada Geese south by air.",
+                  "ImagePath": "https://www.imdb.com/title/tt0116329/mediaviewer/
+                  rm1852897536",
+                  "ReleaseYear": "1996",
+                  "Featured": false
+                }
+              </pre>
+            </td>
+            <td> JWT </td>
+          </tr>
+
+          <tr>
+            <td> 3) Return data about a genre (description) by name (e.g., “Thriller”) </td>
+            <td> /genres/:Name </td>
+            <td> GET </td>
+            <td> None</td>
+            <td> A JSON object holding data about a genre (description) by name or title. Example:
+              <pre>
+                {
+                  "Name": "Comedy",
+                  "Description": "Comedy is a story that tells about a
+                  series of funny, or comical events, intended to make
+                  the audience laugh. It is a very open genre, and thus
+                  crosses over with many other genres on a frequent basis."
+                }
+              </pre>
+            </td>
+            <td> JWT </td>
+          </tr>
+
+          <tr>
+            <td> 4) Return data about a director (bio, birth year, death year) by name </td>
+            <td> /directors/<br>:Name</td>
+            <td> GET </td>
+            <td> None</td>
+            <td> A JSON object holding data about a single director. Example:
+              <pre>
+                {
+                  "Name": "Mel Gibson",
+                  "Bio": "Mel Columcille Gerard Gibson was born January 3,
+                  1956 in Peekskill, New York, USA, as the sixth of eleven
+                  children of Hutton Gibson, a railroad brakeman, and Anne
+                  Patricia (Reilly) Gibson (who died in December of 1990).",
+                  "Birth": "1956"
+                }
+              </pre>
+            </td>
+            <td> JWT </td>
+          </tr>
+
+          <tr>
+            <td> 5) Allow new users to register </td>
+            <td> /users </td>
+            <td> POST </td>
+            <td> A JSON object holding data about the new user to register. Example:
+              <pre>
+                {
+                  "Username": "mytestuser2",
+                  "Password": "12345678",
+                  "Email": "mytestuser@gmail.com",
+                  "Birthday": "04/02/1995"
+                }
+              </pre>
+            </td>
+            <td> A JSON object holding data about the new user created. Example:
+              <pre>
+                {
+                  "Favorites": [],
+                  "_id": "5ed9093c49e2ad044ea6fdfc",
+                  "Username": "mytestuser2",
+                  "Password": "12345678",
+                  "Email": "mytestuser@gmail.com",
+                  "Birthday": "1995-04-01T22:00:00.000Z",
+                  "__v": 0
+                }
+              </pre>
+            </td>
+            <td> None </td>
+          </tr>
+
+          <tr>
+            <td> 6) Allow users to update their user info (username, password, email, date of birth) </td>
+            <td> /users/:Username </td>
+            <td> PUT </td>
+            <td> A JSON object holding user data to be updated. Example:
+              <pre>
+                {
+                  "Username": "michelle89",
+                  "Password": "12345678",
+                  "Email": "newemailaddress@gmail.com",
+                  "Birthday": "04/02/1995"
+                }
+              </pre>
+            </td>
+            <td> A JSON object holding the updated user data. Example:
+              <pre>
+                {
+                  "Favorites": [],
+                  "_id": "5ed8dc1f5331ca03d6d03a0a",
+                  "Username": "michelle89",
+                  "Password": "12345678",
+                  "Email": "newemailaddress@gmail.com",
+                  "Birthday": "1995-04-01T22:00:00.000Z",
+                  "__v": 0
+                }
+              </pre>
+            </td>
+            <td> JWT </td>
+          </tr>
+
+          <tr>
+            <td> 7) Allow users to add a movie to their list of favorites </td>
+            <td> /users/:Username/<br>movies/:_id </td>
+            <td> POST </td>
+            <td> None </td>
+            <td> A JSON object holding the updated user data. Example:
+              <pre>
+                {
+                    "Favorites": [
+                        "5ed640eea64b15a0c8fd3d45"
+                    ],
+                    "_id": "5ed8dc1f5331ca03d6d03a0a",
+                    "Username": "michelle89",
+                    "Password": "12345678",
+                    "Email": "newemailaddress@gmail.com",
+                    "Birthday": "1995-04-01T22:00:00.000Z",
+                    "__v": 0
+                }
+              </pre>
+             </td>
+             <td> JWT </td>
+          </tr>
+
+          <tr>
+            <td> 8) Allow users to remove a movie from their list of favorites </td>
+            <td> /users/:Username/<br>movies/:_id </td>
+            <td> DELETE </td>
+            <td> None </td>
+            <td> A JSON object holding the updated user data. Example:
+              <pre>
+                {
+                  "Favorites": [],
+                  "_id": "5ed8dc1f5331ca03d6d03a0a",
+                  "Username": "michelle89",
+                  "Password": "12345678",
+                  "Email": "newemailaddress@gmail.com",
+                  "Birthday": "1995-04-01T22:00:00.000Z",
+                  "__v": 0
+                }
+              </pre>
+            </td>
+            <td> JWT </td>
+          </tr>
+
+          <tr>
+            <td> 9) Allow existing users to deregister </td>
+            <td> /users/:Username </td>
+            <td> DELETE </td>
+            <td> None </td>
+            <td> A text message indicating whether the user was succesfully removed. </td>
+            <td> JWT </td>
+          </tr>
+
+          <tr>
+            <td> 10) Login for registered users </td>
+            <td> /login </td>
+            <td> POST </td>
+            <td> A JSON object containing the username and the password of the registered user. Example:
+              <pre>
+                {
+                  "Username": "garfield",
+                  "Password": "lasagna"
+                }
+              </pre>
+            </td>
+            <td> A JSON object holding the appropriate user data. Example:
+              <pre>
+                {
+                  "user": {
+                      "Favorites": [],
+                      "_id": "5edbb90c81daff0390f1eb63",
+                      "Username": "garfield",
+                      "Password": "lasagna",
+                      "Email": "hatemondays@gmail.com",
+                      "Birthday": "1995-04-01T22:00:00.000Z",
+                      "__v": 0
+                    },
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+                  eyJGYXZvcml0ZXMiOltdLCJfaWQiOiI1ZWRiYjkwYzgxZGF
+                  mZjAzOTBmMWViNjMiLCJVc2VybmFtZSI6ImdhcmZpZWxkIi
+                  wiUGFzc3dvcmQiOiJsYXNhZ25hIiwiRW1haWwiOiJoYXRlb
+                  W9uZGF5c0BnbWFpbC5jb20iLCJCaXJ0aGRheSI6IjE5OTUt
+                  MDQtMDFUMjI6MDA6MDAuMDAwWiIsIl9fdiI6MCwiaWF0Ijo
+                  xNTkxNDU4MTAzLCJleHAiOjE1OTIwNjI5MDMsInN1YiI6Im
+                  dhcmZpZWxkIn0.I2UOZlWAistYM2hhu24BBfHDf_h99tVDy
+                  Nky6drsxto"
+                }
+              </pre>
+            </td>
+            <td> Local </td>
+          </tr>
+
+    </div>
+  </body>
+</html>

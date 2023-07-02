@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+  font-family: serif;
+}
+
+body {
+  background-color: #FFEFD5;
+  padding: 10px;
+}
+
+.movie-view {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.list-group-item {
+  border: none;
+  text-align: justify;
+}
+
+.list-group-item img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.movies-filter {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.card {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 30vw;
+  object-fit: cover;
+}
+
+.card-title {
+  overflow: hidden;
+  position: relative;
+  line-height: 1.2em;
+  max-height: 2.4em;
+  text-align: justify;
+  margin-right: -1em;
+  padding-right: 1em;
+  font-weight: 600;
+}
+
+.card-title:before {
+  content: "...";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.card-title:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background: white;
+}
+
+/* Solution from http://hackingui.com/front-end/a-pure-css-solution-for-multiline-text-truncation/ */
+.card-text {
+  overflow: hidden;
+  position: relative;
+  line-height: 1.2em;
+  max-height: 3.6em;
+  text-align: justify;
+  margin-right: -1em;
+  padding-right: 1em;
+}
+
+.card-text:before {
+  content: "...";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.card-text:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background: white;
+}
+
+/* ... */
+.card-body {
+  padding: 20px;
+  height: 12rem;
+}
+
+.profile-card-body {
+  height: 10%;
+}
+
+.card button {
+  position: absolute;
+  bottom: 2%;
+  left: 3%;
+}
+
+.remove-fav {
+  margin-bottom: 10%;
+}
+
+.login-container, .registration-container {
+  border: 1px grey solid;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 90%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+  background-color: #FFDAB9;
+}
+.update-button, .delete-button, .back-button {
+  margin-bottom: 10px;
+}
+.my-flix {
+  color: steelblue;
+}
+
+/*# sourceMappingURL=/src.78399e21.css.map */
